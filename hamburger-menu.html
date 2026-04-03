@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,9 +13,7 @@
         
         /* Menu Button (Three Lines) - White */
         .menu-trigger {
-            position: fixed;
-            top: 20px;
-            left: 20px;
+            position: fixed; top: 15px; left: 20px;
             width: 45px;
             height: 45px;
             background: transparent;
@@ -286,11 +284,7 @@
         }
         
         /* Hide menu button on desktop if needed */
-        @media (min-width: 851px) {
-            .menu-trigger {
-                display: none;
-            }
-        }
+        
     </style>
 </head>
 <body>
@@ -322,7 +316,7 @@
         </ul>
         
         <div class="menu-search">
-            <h4>🔍 Search Pages</h4>
+            <h4>?? Search Pages</h4>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Type to search...">
                 <button id="searchBtn"><i data-lucide="search"></i></button>
@@ -331,21 +325,21 @@
         </div>
         
         <div class="menu-info">
-            <h4>📞 Vital Information</h4>
+            <h4>?? Vital Information</h4>
             <div class="info-item">
-                <div class="info-label">📧 Email</div>
+                <div class="info-label">?? Email</div>
                 <div class="info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div>
             </div>
             <div class="info-item">
-                <div class="info-label">📱 Phone & WhatsApp</div>
+                <div class="info-label">?? Phone & WhatsApp</div>
                 <div class="info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div>
             </div>
             <div class="info-item">
-                <div class="info-label">📍 Address</div>
+                <div class="info-label">?? Address</div>
                 <div class="info-value">Flamingo Towers, 5th Floor<br>Upper Hill, Nairobi, Kenya</div>
             </div>
             <div class="info-item">
-                <div class="info-label">⏰ Consultation</div>
+                <div class="info-label">? Consultation</div>
                 <div class="info-value">By Appointment Only<br>Private & Confidential</div>
             </div>
         </div>
@@ -357,7 +351,7 @@
         </div>
         
         <div class="swipe-indicator">
-            ← Swipe to close
+            ? Swipe to close
         </div>
     </div>
 
@@ -445,7 +439,7 @@
             
             if (results.length > 0) {
                 searchResults.innerHTML = results.map(result => 
-                    `<a href="${result.url}" class="search-result-item" data-url="${result.url}">🔍 ${result.name}</a>`
+                    `<a href="${result.url}" class="search-result-item" data-url="${result.url}">?? ${result.name}</a>`
                 ).join('');
                 searchResults.classList.add('active');
                 
