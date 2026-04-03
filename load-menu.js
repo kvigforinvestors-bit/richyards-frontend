@@ -1,24 +1,19 @@
 ﻿// Load hamburger menu on all pages
 (function() {
-    // Check if menu already loaded
-    if (document.getElementById('hamburger-menu-loaded')) {
-        return;
-    }
+    if (document.getElementById('hamburger-menu-loaded')) return;
     
-    // Function to create and show menu button
     function loadMenu() {
-        // Create menu container
         const menuContainer = document.createElement('div');
         menuContainer.id = 'hamburger-menu-loaded';
         
-        // Menu HTML structure
         menuContainer.innerHTML = `
             <style>
-                /* Menu Button (Three White Lines) */
+                /* Menu Button - Positioned on RIGHT side */
                 .menu-trigger {
                     position: fixed !important;
-                    top: 15px !important;
-                    left: 20px !important;
+                    top: 12px !important;
+                    right: 20px !important;
+                    left: auto !important;
                     width: 45px !important;
                     height: 45px !important;
                     background: transparent !important;
@@ -65,22 +60,24 @@
                     display: block;
                 }
                 
-                /* Menu Panel */
+                /* Menu Panel - Slides from RIGHT side */
                 .menu-panel {
                     position: fixed;
                     top: 0;
-                    left: -100%;
+                    right: -100%;
+                    left: auto !important;
                     width: 85%;
                     max-width: 350px;
                     height: 100%;
                     background: linear-gradient(135deg, #0b5d1e 0%, #094a18 100%);
                     z-index: 10002;
-                    transition: left 0.3s ease;
+                    transition: right 0.3s ease;
                     padding: 80px 25px 30px;
                     overflow-y: auto;
                 }
                 .menu-panel.open {
-                    left: 0;
+                    right: 0 !important;
+                    left: auto !important;
                 }
                 
                 .menu-logo {
@@ -251,12 +248,8 @@
         
         document.body.insertBefore(menuContainer, document.body.firstChild);
         
-        // Initialize Lucide icons
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         
-        // Menu functionality
         const trigger = document.getElementById('menuTrigger');
         const panel = document.getElementById('menuPanel');
         const overlay = document.getElementById('menuOverlay');
@@ -278,14 +271,12 @@
         if (trigger) trigger.addEventListener('click', openMenu);
         if (overlay) overlay.addEventListener('click', closeMenu);
         
-        // Swipe to close
         let touchStart = 0;
         panel.addEventListener('touchstart', e => touchStart = e.changedTouches[0].screenX);
         panel.addEventListener('touchend', e => {
-            if (e.changedTouches[0].screenX - touchStart > 50) closeMenu();
+            if (touchStart - e.changedTouches[0].screenX > 50) closeMenu();
         });
         
-        // Close on link click
         document.querySelectorAll('.menu-nav a').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
@@ -295,7 +286,6 @@
             });
         });
         
-        // Search
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
         const pages = [
@@ -333,11 +323,9 @@
         const searchBtn = document.getElementById('searchBtn');
         if (searchBtn) searchBtn.addEventListener('click', search);
         
-        // Escape key
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel?.classList.contains('open')) closeMenu(); });
     }
     
-    // Load menu when page is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', loadMenu);
     } else {
