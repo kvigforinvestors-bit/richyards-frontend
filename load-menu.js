@@ -1,40 +1,77 @@
 ﻿// Load hamburger menu on all pages
 (function() {
-    if (document.getElementById('hamburger-menu-loaded')) return;
+    if (document.getElementById('mobile-menu-injected')) return;
     
-    function loadMenu() {
-        // Find the nav element
+    function initMobileMenu() {
         const nav = document.querySelector('nav');
         if (!nav) return;
         
-        // Create menu container
-        const menuContainer = document.createElement('div');
-        menuContainer.id = 'hamburger-menu-loaded';
+        // Check if button already exists
+        if (document.getElementById('mobileMenuTrigger')) return;
         
-        // Add the hamburger button to the nav bar
-        const hamburgerBtn = document.createElement('button');
-        hamburgerBtn.className = 'mobile-menu-trigger';
-        hamburgerBtn.id = 'mobileMenuTrigger';
-        hamburgerBtn.innerHTML = '<span></span><span></span><span></span>';
-        hamburgerBtn.setAttribute('aria-label', 'Menu');
+        // Create hamburger button
+        const trigger = document.createElement('button');
+        trigger.id = 'mobileMenuTrigger';
+        trigger.className = 'mobile-menu-trigger';
+        trigger.setAttribute('aria-label', 'Menu');
+        trigger.innerHTML = '<span></span><span></span><span></span>';
         
-        // Insert button into nav (at the end, after logo)
-        nav.appendChild(hamburgerBtn);
+        // Insert button into nav at the end
+        nav.appendChild(trigger);
         
-        // Add styles for the button
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'mobileMenuOverlay';
+        overlay.className = 'mobile-menu-overlay';
+        document.body.appendChild(overlay);
+        
+        // Create menu panel
+        const panel = document.createElement('div');
+        panel.id = 'mobileMenuPanel';
+        panel.className = 'mobile-menu-panel';
+        panel.innerHTML = `
+            <div class="mobile-menu-logo"><h2>RICHYARDS</h2></div>
+            <ul class="mobile-menu-nav">
+                <li><a href="index.html"><i data-lucide="home"></i> Home</a></li>
+                <li><a href="about.html"><i data-lucide="building-2"></i> About Us</a></li>
+                <li><a href="sectors.html"><i data-lucide="pie-chart"></i> Sectors</a></li>
+                <li><a href="opportunities.html"><i data-lucide="trending-up"></i> Opportunities</a></li>
+                <li><a href="partnerships.html"><i data-lucide="handshake"></i> Partnerships</a></li>
+                <li><a href="expansion.html"><i data-lucide="map"></i> Expansion</a></li>
+                <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
+            </ul>
+            <div class="mobile-menu-search">
+                <h4>🔍 Search Pages</h4>
+                <div class="mobile-search-box">
+                    <input type="text" id="mobileSearchInput" placeholder="Type to search...">
+                    <button id="mobileSearchBtn"><i data-lucide="search"></i></button>
+                </div>
+                <div class="mobile-search-results" id="mobileSearchResults"></div>
+            </div>
+            <div class="mobile-menu-info">
+                <h4>📞 Vital Information</h4>
+                <div class="mobile-info-item"><div class="mobile-info-label">📧 Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
+                <div class="mobile-info-item"><div class="mobile-info-label">📱 Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
+                <div class="mobile-info-item"><div class="mobile-info-label">📍 Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
+            </div>
+            <div class="mobile-swipe-indicator">← Swipe to close</div>
+        `;
+        document.body.appendChild(panel);
+        
+        // Add styles
         const style = document.createElement('style');
         style.textContent = `
             .mobile-menu-trigger {
-                display: none;
                 background: transparent;
                 border: none;
                 cursor: pointer;
-                padding: 10px;
-                z-index: 10000;
+                display: none;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 gap: 6px;
+                padding: 10px;
+                margin-left: auto;
             }
             .mobile-menu-trigger span {
                 display: block;
@@ -53,28 +90,23 @@
             .mobile-menu-trigger.active span:nth-child(3) {
                 transform: rotate(-45deg) translate(6px, -6px);
             }
-            
-            /* Overlay */
             .mobile-menu-overlay {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.7);
+                background: rgba(0,0,0,0.7);
                 z-index: 10001;
                 display: none;
             }
             .mobile-menu-overlay.active {
                 display: block;
             }
-            
-            /* Menu Panel - Slides from RIGHT */
             .mobile-menu-panel {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                left: auto;
                 width: 85%;
                 max-width: 350px;
                 height: 100%;
@@ -88,7 +120,6 @@
             .mobile-menu-panel.open {
                 right: 0;
             }
-            
             .mobile-menu-logo {
                 text-align: center;
                 margin-bottom: 30px;
@@ -112,7 +143,7 @@
                 align-items: center;
                 gap: 15px;
                 padding: 14px 18px;
-                color: #ffffff;
+                color: #fff;
                 text-decoration: none;
                 font-size: 16px;
                 border-radius: 12px;
@@ -200,25 +231,12 @@
                 color: #f5e6a3;
                 text-decoration: none;
             }
-            .mobile-menu-social {
-                display: flex;
-                gap: 15px;
-                justify-content: center;
-                margin-top: 25px;
-                padding-top: 20px;
-                border-top: 1px solid rgba(201,162,39,0.3);
-            }
-            .mobile-menu-social a {
-                color: #c9a227;
-            }
             .mobile-swipe-indicator {
                 text-align: center;
                 margin-top: 20px;
                 font-size: 12px;
                 color: rgba(255,255,255,0.5);
             }
-            
-            /* Show on mobile only */
             @media (max-width: 850px) {
                 .mobile-menu-trigger {
                     display: flex !important;
@@ -235,68 +253,27 @@
         `;
         document.head.appendChild(style);
         
-        // Create overlay and panel
-        const overlay = document.createElement('div');
-        overlay.className = 'mobile-menu-overlay';
-        overlay.id = 'mobileMenuOverlay';
-        
-        const panel = document.createElement('div');
-        panel.className = 'mobile-menu-panel';
-        panel.id = 'mobileMenuPanel';
-        panel.innerHTML = `
-            <div class="mobile-menu-logo"><h2>RICHYARDS</h2></div>
-            <ul class="mobile-menu-nav">
-                <li><a href="index.html"><i data-lucide="home"></i> Home</a></li>
-                <li><a href="about.html"><i data-lucide="building-2"></i> About Us</a></li>
-                <li><a href="sectors.html"><i data-lucide="pie-chart"></i> Sectors</a></li>
-                <li><a href="opportunities.html"><i data-lucide="trending-up"></i> Opportunities</a></li>
-                <li><a href="partnerships.html"><i data-lucide="handshake"></i> Partnerships</a></li>
-                <li><a href="expansion.html"><i data-lucide="map"></i> Expansion</a></li>
-                <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
-            </ul>
-            <div class="mobile-menu-search">
-                <h4>🔍 Search Pages</h4>
-                <div class="mobile-search-box">
-                    <input type="text" id="mobileSearchInput" placeholder="Type to search...">
-                    <button id="mobileSearchBtn"><i data-lucide="search"></i></button>
-                </div>
-                <div class="mobile-search-results" id="mobileSearchResults"></div>
-            </div>
-            <div class="mobile-menu-info">
-                <h4>📞 Vital Information</h4>
-                <div class="mobile-info-item"><div class="mobile-info-label">📧 Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
-                <div class="mobile-info-item"><div class="mobile-info-label">📱 Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
-                <div class="mobile-info-item"><div class="mobile-info-label">📍 Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
-            </div>
-            <div class="mobile-swipe-indicator">← Swipe to close</div>
-        `;
-        
-        document.body.appendChild(overlay);
-        document.body.appendChild(panel);
-        
-        // Initialize Lucide icons
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-        
-        const trigger = document.getElementById('mobileMenuTrigger');
+        // Menu functionality
+        const triggerBtn = document.getElementById('mobileMenuTrigger');
         const panelEl = document.getElementById('mobileMenuPanel');
         const overlayEl = document.getElementById('mobileMenuOverlay');
         
         function openMenu() {
             panelEl.classList.add('open');
             overlayEl.classList.add('active');
-            trigger.classList.add('active');
+            triggerBtn.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
         
         function closeMenu() {
             panelEl.classList.remove('open');
             overlayEl.classList.remove('active');
-            trigger.classList.remove('active');
+            triggerBtn.classList.remove('active');
             document.body.style.overflow = '';
         }
         
-        if (trigger) trigger.addEventListener('click', openMenu);
-        if (overlayEl) overlayEl.addEventListener('click', closeMenu);
+        triggerBtn.addEventListener('click', openMenu);
+        overlayEl.addEventListener('click', closeMenu);
         
         // Swipe to close
         let touchStart = 0;
@@ -349,16 +326,17 @@
             }
         }
         
-        if (searchInput) searchInput.addEventListener('keyup', search);
-        const searchBtn = document.getElementById('mobileSearchBtn');
-        if (searchBtn) searchBtn.addEventListener('click', search);
+        searchInput.addEventListener('keyup', search);
+        document.getElementById('mobileSearchBtn').addEventListener('click', search);
         
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && panelEl?.classList.contains('open')) closeMenu(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && panelEl.classList.contains('open')) closeMenu(); });
+        
+        if (typeof lucide !== 'undefined') lucide.createIcons();
     }
     
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadMenu);
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
     } else {
-        loadMenu();
+        initMobileMenu();
     }
 })();
