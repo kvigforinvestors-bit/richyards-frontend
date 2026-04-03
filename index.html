@@ -50,6 +50,7 @@
             height: 40px; border-radius: 6px; border: 1px solid rgba(201,162,39,0.5);
             background: rgba(0,0,0,0.2); padding: 2px;
         }
+        .logo-zoom:hover { transform: scale(1.08); }
         
         .nav-links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
         .nav-link { 
@@ -64,7 +65,7 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 102; }
         .hamburger i { width: 28px; height: 28px; color: #ffffff; }
 
-        /* THE GOLD SECTION */
+        /* THE GOLD SECTION (The prominent border box) */
         .gold-section {
             max-width: 1300px; 
             margin: 12px auto 60px;
@@ -97,17 +98,9 @@
             transition: all 0.3s ease;
         }
         .video-wrapper:hover { border-color: #c9a227; transform: scale(1.01); }
-        
-        .facebook-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            overflow: hidden;
-        }
+        video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+        /* CONTENT STYLING */
         .gold-tag { color: #c9a227; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 3px; margin-bottom: 12px; display: block; }
         .main-heading { 
             font-family: 'Playfair Display', serif; font-size: 42px; line-height: 1.2; margin-bottom: 18px; color: #fff;
@@ -116,6 +109,7 @@
         }
         .description { color: #bbb; line-height: 1.7; font-size: 16px; margin-bottom: 28px; }
 
+        /* STAT CARDS */
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 32px; }
         .stat-card { 
             background: rgba(255,255,255,0.03); padding: 18px 8px; border-radius: 20px; 
@@ -126,6 +120,7 @@
         .stat-val { font-size: 32px; font-weight: 800; color: #c9a227; display: block; margin-bottom: 6px; }
         .stat-lab { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 1.5px; }
 
+        /* CALL TO ACTION */
         .cta-primary { 
             display: inline-flex; align-items: center; gap: 10px;
             padding: 14px 32px; border-radius: 40px; border: none;
@@ -135,70 +130,51 @@
         }
         .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 22px rgba(201,162,39,0.4); }
 
+        /* SOCIAL FOOTER */
         .social-link {
-            display: inline-flex; align-items: center; gap: 10px;
-            text-decoration: none; color: #c9a227; font-size: 14px; padding: 8px 18px;
-            border-radius: 40px; background: rgba(201,162,39,0.08); border: 1px solid rgba(201,162,39,0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #c9a227;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+            padding: 8px 18px;
+            border-radius: 40px;
+            background: rgba(201,162,39,0.08);
+            border: 1px solid rgba(201,162,39,0.2);
         }
-        .social-icon-img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #c9a227; }
+        .social-link:hover {
+            background: rgba(201,162,39,0.2);
+            color: #f5e6a3;
+            transform: translateY(-2px);
+        }
+        .social-icon-img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #c9a227;
+        }
 
-        /* MOBILE RESPONSIVENESS - FIXED */
+        /* MOBILE RESPONSIVENESS */
         @media (max-width: 850px) {
             .hero-grid { grid-template-columns: 1fr; gap: 30px; }
             .gold-section { padding: 35px 20px; width: 95%; }
             .main-heading { font-size: 32px; }
             .hamburger { display: block; }
-            
             .nav-links {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: #0b5d1e;
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 80px 25px 30px;
-                transition: left 0.3s ease;
-                z-index: 1000;
-                border-right: 2px solid #c9a227;
-                gap: 8px;
-                overflow-y: auto;
+                position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px;
+                height: 100vh; background: #0b5d1e; flex-direction: column;
+                justify-content: flex-start; padding: 80px 20px; transition: 0.3s;
+                z-index: 101; border-right: 2px solid #c9a227; gap: 12px;
             }
             .nav-links.open { left: 0; }
-            
-            .nav-link {
-                width: 100%;
-                padding: 14px 18px !important;
-                font-size: 16px !important;
-                background: rgba(255,255,255,0.05);
-                border-radius: 12px !important;
-                margin-bottom: 4px;
-                justify-content: flex-start;
-            }
-            .nav-link i {
-                width: 22px;
-                height: 22px;
-                margin-right: 12px;
-            }
-            
-            .mobile-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.7);
-                z-index: 999;
-                display: none;
-                cursor: pointer;
-            }
-            .mobile-overlay.active { display: block; }
-        }
-        
-        @media (min-width: 851px) {
-            .mobile-overlay { display: none !important; }
+            .nav-link { width: 100%; justify-content: flex-start; padding: 12px 16px; font-size: 14px; }
+            .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100; display: none; }
+            .overlay.active { display: block; }
         }
     </style>
 </head>
@@ -229,22 +205,20 @@
             <a href='contact.html' class='nav-link'><i data-lucide='mail'></i>Contact</a>
         </div>
     </nav>
-    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="overlay" id="overlay"></div>
 
     <div class="gold-section">
         <div class="hero-grid">
             <div class="video-area">
                 <div class="video-wrapper">
                     <iframe 
-                        src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1613000673263223%2F&show_text=false&width=560&t=0" 
+                        src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1613000673263223%2F&show_text=false&width=560&t=0&autoplay=1&mute=1" 
                         width="100%" 
                         height="100%" 
                         style="border:none; overflow:hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-                        scrolling="no" 
                         frameborder="0" 
                         allowfullscreen="true" 
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" 
-                        allowFullScreen="true">
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                     </iframe>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
@@ -296,23 +270,29 @@
             
             const hamburger = document.getElementById('hamburgerBtn');
             const navLinks = document.getElementById('navLinks');
-            const overlay = document.getElementById('mobileOverlay');
+            const overlay = document.getElementById('overlay');
+            
+            function toggleMenu() {
+                navLinks.classList.toggle('open');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+                
+                const icon = hamburger.querySelector('i');
+                if (icon && navLinks.classList.contains('open')) {
+                    icon.setAttribute('data-lucide', 'x');
+                } else if (icon) {
+                    icon.setAttribute('data-lucide', 'menu');
+                }
+                lucide.createIcons();
+            }
             
             function closeMenu() {
                 navLinks.classList.remove('open');
-                if (overlay) overlay.classList.remove('active');
+                overlay.classList.remove('active');
                 document.body.style.overflow = '';
-            }
-            
-            function toggleMenu() {
-                const isOpen = navLinks.classList.toggle('open');
-                if (overlay) overlay.classList.toggle('active');
-                document.body.style.overflow = isOpen ? 'hidden' : '';
-                
-                // Change hamburger icon
                 const icon = hamburger.querySelector('i');
                 if (icon) {
-                    icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+                    icon.setAttribute('data-lucide', 'menu');
                     lucide.createIcons();
                 }
             }
@@ -320,21 +300,17 @@
             if (hamburger) hamburger.addEventListener('click', toggleMenu);
             if (overlay) overlay.addEventListener('click', closeMenu);
             
-            // Close menu when a nav link is clicked
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
                     if (href && href !== '#') {
                         e.preventDefault();
                         closeMenu();
-                        setTimeout(function() {
-                            window.location.href = href;
-                        }, 200);
+                        setTimeout(() => { window.location.href = href; }, 200);
                     }
                 });
             });
             
-            // Close menu on window resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 850 && navLinks.classList.contains('open')) {
                     closeMenu();
