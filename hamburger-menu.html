@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,9 +11,12 @@
             box-sizing: border-box;
         }
         
-        /* Menu Button (Three Lines) - White */
+        /* Menu Button (Three White Lines) - RIGHT SIDE */
         .menu-trigger {
-            position: fixed; top: 15px; left: 20px;
+            position: fixed;
+            top: 12px;
+            right: 20px;
+            left: auto;
             width: 45px;
             height: 45px;
             background: transparent;
@@ -66,24 +69,25 @@
             display: block;
         }
         
-        /* Menu Panel */
+        /* Menu Panel - SLIDES FROM RIGHT */
         .menu-panel {
             position: fixed;
             top: 0;
-            left: -100%;
+            right: -100%;
+            left: auto;
             width: 85%;
             max-width: 350px;
             height: 100%;
             background: linear-gradient(135deg, #0b5d1e 0%, #094a18 100%);
             z-index: 10002;
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 80px 25px 30px;
-            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
             overflow-y: auto;
         }
         
         .menu-panel.open {
-            left: 0;
+            right: 0;
         }
         
         /* Logo in Menu */
@@ -283,12 +287,16 @@
             color: rgba(255, 255, 255, 0.5);
         }
         
-        /* Hide menu button on desktop if needed */
-        
+        /* Hide menu button on desktop */
+        @media (min-width: 851px) {
+            .menu-trigger {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Menu Trigger Button (Three White Lines) -->
+    <!-- Menu Trigger Button (Three White Lines) - RIGHT SIDE -->
     <button class="menu-trigger" id="menuTrigger">
         <span></span>
         <span></span>
@@ -298,7 +306,7 @@
     <!-- Overlay -->
     <div class="menu-overlay" id="menuOverlay"></div>
     
-    <!-- Menu Panel -->
+    <!-- Menu Panel - SLIDES FROM RIGHT -->
     <div class="menu-panel" id="menuPanel">
         <div class="menu-logo">
             <h2>RICHYARDS</h2>
@@ -316,7 +324,7 @@
         </ul>
         
         <div class="menu-search">
-            <h4>?? Search Pages</h4>
+            <h4>🔍 Search Pages</h4>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Type to search...">
                 <button id="searchBtn"><i data-lucide="search"></i></button>
@@ -325,21 +333,21 @@
         </div>
         
         <div class="menu-info">
-            <h4>?? Vital Information</h4>
+            <h4>📞 Vital Information</h4>
             <div class="info-item">
-                <div class="info-label">?? Email</div>
+                <div class="info-label">📧 Email</div>
                 <div class="info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div>
             </div>
             <div class="info-item">
-                <div class="info-label">?? Phone & WhatsApp</div>
+                <div class="info-label">📱 Phone & WhatsApp</div>
                 <div class="info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div>
             </div>
             <div class="info-item">
-                <div class="info-label">?? Address</div>
+                <div class="info-label">📍 Address</div>
                 <div class="info-value">Flamingo Towers, 5th Floor<br>Upper Hill, Nairobi, Kenya</div>
             </div>
             <div class="info-item">
-                <div class="info-label">? Consultation</div>
+                <div class="info-label">⏰ Consultation</div>
                 <div class="info-value">By Appointment Only<br>Private & Confidential</div>
             </div>
         </div>
@@ -351,7 +359,7 @@
         </div>
         
         <div class="swipe-indicator">
-            ? Swipe to close
+            ← Swipe to close
         </div>
     </div>
 
@@ -400,14 +408,14 @@
         menuTrigger.addEventListener('click', openMenu);
         menuOverlay.addEventListener('click', closeMenu);
         
-        // Swipe to close
+        // Swipe to close (swipe left to close since menu is on right)
         menuPanel.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
         });
         
         menuPanel.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
-            if (touchEndX - touchStartX > 50) {
+            if (touchStartX - touchEndX > 50) {
                 closeMenu();
             }
         });
@@ -439,7 +447,7 @@
             
             if (results.length > 0) {
                 searchResults.innerHTML = results.map(result => 
-                    `<a href="${result.url}" class="search-result-item" data-url="${result.url}">?? ${result.name}</a>`
+                    `<a href="${result.url}" class="search-result-item" data-url="${result.url}">🔍 ${result.name}</a>`
                 ).join('');
                 searchResults.classList.add('active');
                 
