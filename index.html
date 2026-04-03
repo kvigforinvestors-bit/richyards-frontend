@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Richyards Investors - Home | Africa Investment</title>
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=''http://www.w3.org/2000/svg'' viewBox=''0 0 100 100''><rect width=''100'' height=''100'' fill=''%230b5d1e''/><text x=''50'' y=''70'' font-size=''70'' text-anchor=''middle'' fill=''%23c9a227'' font-family=''Arial''>R</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b5d1e'/><text x='50' y='70' font-size='70' text-anchor='middle' fill='%23c9a227' font-family='Arial'>R</text></svg>">
     
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -41,7 +41,6 @@
             z-index: 100; 
             border-bottom: 2px solid #c9a227;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            flex-wrap: wrap;
         }
         
         .logo-container { display: flex; align-items: center; z-index: 101; }
@@ -54,14 +53,8 @@
             background: rgba(0,0,0,0.2);
             padding: 2px;
         }
-        .logo-zoom:hover { transform: scale(1.08); }
         
-        .nav-links { 
-            display: flex; 
-            gap: 8px; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-        }
+        .nav-links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
         
         .nav-link { 
             display: flex; 
@@ -77,7 +70,6 @@
             font-weight: 600;
             text-transform: uppercase; 
             letter-spacing: 0.5px;
-            white-space: nowrap;
         }
         
         .nav-link:hover { background: rgba(201, 162, 39, 0.2); border-color: #c9a227; color: #f5e6a3; }
@@ -95,7 +87,7 @@
         .hamburger i { width: 28px; height: 28px; color: #ffffff; transition: 0.3s; }
         .hamburger:hover i { color: #c9a227; }
         
-        /* Mobile Menu Styles */
+        /* Mobile Menu - TAPPABLE ICONS FIXED */
         @media (max-width: 768px) {
             nav { padding: 12px 16px; }
             .hamburger { display: block; }
@@ -116,10 +108,37 @@
                 z-index: 101;
                 box-shadow: 2px 0 20px rgba(0,0,0,0.3);
                 border-right: 2px solid #c9a227;
+                overflow-y: auto;
             }
             .nav-links.open { left: 0; }
-            .nav-link { width: 100%; justify-content: flex-start; padding: 12px 16px; font-size: 14px; white-space: normal; }
-            .nav-link span { display: inline; }
+            
+            .nav-link { 
+                display: flex !important;
+                align-items: center !important;
+                gap: 15px !important;
+                width: 100%;
+                padding: 14px 20px !important;
+                font-size: 16px !important;
+                background: rgba(255,255,255,0.05);
+                border-radius: 12px !important;
+                transition: all 0.2s ease;
+                cursor: pointer;
+            }
+            .nav-link:active {
+                background: rgba(201,162,39,0.3);
+                transform: scale(0.98);
+            }
+            .nav-link i {
+                width: 24px !important;
+                height: 24px !important;
+                flex-shrink: 0;
+                pointer-events: none;
+            }
+            .nav-link span {
+                display: inline !important;
+                font-size: 16px;
+                font-weight: 500;
+            }
             
             .overlay {
                 position: fixed;
@@ -149,13 +168,13 @@
                 box-shadow: none;
                 border-right: none;
             }
+            .nav-link { padding: 8px 14px; font-size: 13px; }
+            .nav-link i { width: 18px; height: 18px; }
         }
 
         .gold-section {
             max-width: 1300px; 
             margin: 12px auto 60px;
-            position: relative; 
-            z-index: 10;
             background: linear-gradient(145deg, #111, #0a0a0a);
             border: 1px solid #c9a227;
             border-radius: clamp(16px, 4vw, 28px);
@@ -166,26 +185,17 @@
             margin-right: auto;
         }
 
-        .hero-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 50px; 
-            align-items: start; 
-        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
 
         .video-wrapper { 
             width: 100%; 
             border-radius: 24px; 
             overflow: hidden; 
             border: 2px solid rgba(201,162,39,0.5);
-            box-shadow: 0 20px 30px -8px rgba(0,0,0,0.7);
             background: #000;
             aspect-ratio: 16 / 9;
             position: relative;
-            transition: all 0.3s ease;
         }
-        .video-wrapper:hover { border-color: #c9a227; transform: scale(1.01); }
-        
         .video-wrapper iframe {
             position: absolute;
             top: 0;
@@ -201,32 +211,28 @@
             font-size: clamp(28px, 6vw, 42px); 
             line-height: 1.2; 
             margin-bottom: 18px; 
-            color: #fff;
             background: linear-gradient(135deg, #ffffff, #f0e6c5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .description { color: #bbb; line-height: 1.7; font-size: clamp(14px, 3vw, 16px); margin-bottom: 28px; }
+        .description { color: #bbb; font-size: clamp(14px, 3vw, 16px); margin-bottom: 28px; }
 
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 32px; }
         .stat-card { 
             background: rgba(255,255,255,0.03); padding: 18px 8px; border-radius: 20px; 
-            text-align: center; border: 1px solid rgba(201,162,39,0.15); transition: 0.3s;
-            backdrop-filter: blur(2px);
+            text-align: center; border: 1px solid rgba(201,162,39,0.15);
         }
-        .stat-card:hover { border-color: #c9a227; transform: translateY(-5px); background: rgba(201,162,39,0.08); }
-        .stat-val { font-size: clamp(24px, 6vw, 32px); font-weight: 800; color: #c9a227; display: block; margin-bottom: 6px; }
-        .stat-lab { font-size: clamp(8px, 2.5vw, 10px); color: #aaa; text-transform: uppercase; letter-spacing: 1.5px; }
+        .stat-val { font-size: clamp(24px, 6vw, 32px); font-weight: 800; color: #c9a227; display: block; }
+        .stat-lab { font-size: clamp(8px, 2.5vw, 10px); color: #aaa; text-transform: uppercase; }
 
         .cta-primary { 
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 14px 32px; border-radius: 40px; border: none;
+            padding: 14px 32px; border-radius: 40px;
             background: linear-gradient(95deg, #c9a227, #f5e6a3);
             color: #0a0a0a; font-weight: 700; text-decoration: none; 
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; font-size: clamp(11px, 3vw, 13px);
+            font-size: clamp(11px, 3vw, 13px);
         }
-        .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 22px rgba(201,162,39,0.4); }
 
         .social-link {
             display: inline-flex;
@@ -242,7 +248,6 @@
         }
         .social-icon-img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #c9a227; }
 
-        /* Responsive */
         @media (max-width: 850px) {
             .hero-grid { grid-template-columns: 1fr; gap: 30px; }
             .gold-section { width: 95%; }
@@ -252,8 +257,6 @@
             .stats-grid { gap: 10px; }
             .stat-card { padding: 12px 5px; }
             .cta-primary { padding: 10px 20px; }
-            .social-link { padding: 5px 12px; font-size: 11px; }
-            .social-icon-img { width: 22px; height: 22px; }
         }
     </style>
 </head>
@@ -261,29 +264,25 @@
 
     <div class="hero-header">
         <div class="hero-content">
-            <h1 style="font-family: 'Playfair Display'; color: #c9a227; letter-spacing: 2px; text-transform: uppercase;">RICHYARDS INVESTORS</h1>
+            <h1 style="font-family: 'Playfair Display'; color: #c9a227;">RICHYARDS INVESTORS</h1>
             <div style="width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #c9a227, transparent); margin: 15px auto;"></div>
-            <p style="opacity: 0.9; font-weight: 300; letter-spacing: 1px;">Pioneering Growth Across Emerging Markets</p>
+            <p>Pioneering Growth Across Emerging Markets</p>
         </div>
     </div>
 
     <nav>
         <div class="logo-container">
-            <a href="index.html"><img src="Images/LOGO.jpeg" alt="Richyards Logo" class="logo-zoom" onerror="this.src=''data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%230b5d1e%22/%3E%3Ctext x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22 fill=%22%23c9a227%22%3ER%3C/text%3E%3C/svg%3E'';"></a>
+            <a href="index.html"><img src="Images/LOGO.jpeg" alt="Richyards Logo" class="logo-zoom"></a>
         </div>
-        
-        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-            <i data-lucide="menu"></i>
-        </button>
-        
+        <button class="hamburger" id="hamburgerBtn"><i data-lucide="menu"></i></button>
         <div class="nav-links" id="navLinks">
-            <a href='index.html' class='nav-link active'><i data-lucide='home'></i><span>Home</span></a>
-            <a href='about.html' class='nav-link'><i data-lucide='building-2'></i><span>About</span></a>
-            <a href='sectors.html' class='nav-link'><i data-lucide='pie-chart'></i><span>Sectors</span></a>
-            <a href='opportunities.html' class='nav-link'><i data-lucide='trending-up'></i><span>Opportunities</span></a>
-            <a href='partnerships.html' class='nav-link'><i data-lucide='handshake'></i><span>Partnerships</span></a>
-            <a href='expansion.html' class='nav-link'><i data-lucide='map'></i><span>Expansion</span></a>
-            <a href='contact.html' class='nav-link'><i data-lucide='mail'></i><span>Contact</span></a>
+            <a href="index.html" class="nav-link active"><i data-lucide="home"></i><span>Home</span></a>
+            <a href="about.html" class="nav-link"><i data-lucide="building-2"></i><span>About</span></a>
+            <a href="sectors.html" class="nav-link"><i data-lucide="pie-chart"></i><span>Sectors</span></a>
+            <a href="opportunities.html" class="nav-link"><i data-lucide="trending-up"></i><span>Opportunities</span></a>
+            <a href="partnerships.html" class="nav-link"><i data-lucide="handshake"></i><span>Partnerships</span></a>
+            <a href="expansion.html" class="nav-link"><i data-lucide="map"></i><span>Expansion</span></a>
+            <a href="contact.html" class="nav-link"><i data-lucide="mail"></i><span>Contact</span></a>
         </div>
     </nav>
     <div class="overlay" id="overlay"></div>
@@ -292,41 +291,20 @@
         <div class="hero-grid">
             <div class="video-area">
                 <div class="video-wrapper">
-                    <iframe 
-                        src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1613000673263223%2F&show_text=false&width=560&t=0&autoplay=1&mute=1"
-                        frameborder="0" 
-                        allowfullscreen="true"
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                    </iframe>
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1613000673263223%2F&show_text=false&width=560&t=0&autoplay=1&mute=1" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <a href="opportunities.html" class="cta-primary">
-                        Explore Opportunities <i data-lucide="arrow-right"></i>
-                    </a>
+                    <a href="opportunities.html" class="cta-primary">Explore Opportunities <i data-lucide="arrow-right"></i></a>
                 </div>
             </div>
-
             <div class="content-area">
                 <span class="gold-tag">Strategic Development</span>
                 <h2 class="main-heading">Investing in Africa's Future, Empowering Generations</h2>
-                <p class="description">
-                    RICHYARDS INVESTORS is a premier African investment and development firm headquartered in Kenya. 
-                    We bridge the gap between global capital and high-growth opportunities across the continent, focusing on sustainable impact and superior returns.
-                </p>
-                
+                <p class="description">RICHYARDS INVESTORS is a premier African investment and development firm headquartered in Kenya. We bridge the gap between global capital and high-growth opportunities across the continent.</p>
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-val">15+</span>
-                        <span class="stat-lab">Active Projects</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-val">$250M+</span>
-                        <span class="stat-lab">Total Assets</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-val">200+</span>
-                        <span class="stat-lab">Global Partners</span>
-                    </div>
+                    <div class="stat-card"><span class="stat-val">15+</span><span class="stat-lab">Active Projects</span></div>
+                    <div class="stat-card"><span class="stat-val">$250M+</span><span class="stat-lab">Total Assets</span></div>
+                    <div class="stat-card"><span class="stat-val">200+</span><span class="stat-lab">Global Partners</span></div>
                 </div>
             </div>
         </div>
@@ -335,21 +313,16 @@
     <footer style="text-align: center; padding: 50px 20px; background: #060606; border-top: 1px solid rgba(201,162,39,0.15);">
         <div style="margin-bottom: 25px;">
             <a href="https://www.facebook.com/share/1J2z9Fh3tZ/" target="_blank" class="social-link">
-                <img src="Images/facebook_icon.jpg" alt="Facebook" class="social-icon-img" onerror="this.src=''data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22%23c9a227%22%3E%3Cpath d=%22M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z%22/%3E%3C/svg%3E'';">
-                Facebook
+                <img src="Images/facebook_icon.jpg" alt="Facebook" class="social-icon-img"> Facebook
             </a>
         </div>
-        <p style="color: #666; font-size: clamp(10px, 3vw, 12px); letter-spacing: 1px;">© 2026 RICHYARDS INVESTORS | ALL RIGHTS RESERVED</p>
+        <p style="color: #666; font-size: clamp(10px, 3vw, 12px);">© 2026 RICHYARDS INVESTORS | ALL RIGHTS RESERVED</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Lucide icons
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             
-            // Hamburger menu functionality
             const hamburger = document.getElementById('hamburgerBtn');
             const navLinks = document.getElementById('navLinks');
             const overlay = document.getElementById('overlay');
@@ -358,8 +331,6 @@
                 const isOpen = navLinks.classList.toggle('open');
                 overlay.classList.toggle('active');
                 document.body.style.overflow = isOpen ? 'hidden' : '';
-                
-                // Change hamburger icon to X when open
                 if (hamburger) {
                     const icon = hamburger.querySelector('i');
                     if (icon) {
@@ -375,33 +346,21 @@
                 document.body.style.overflow = '';
                 if (hamburger) {
                     const icon = hamburger.querySelector('i');
-                    if (icon) {
-                        icon.setAttribute('data-lucide', 'menu');
-                        if (typeof lucide !== 'undefined') lucide.createIcons();
-                    }
+                    if (icon) icon.setAttribute('data-lucide', 'menu');
+                    if (typeof lucide !== 'undefined') lucide.createIcons();
                 }
             }
             
             if (hamburger) hamburger.addEventListener('click', toggleMenu);
             if (overlay) overlay.addEventListener('click', closeMenu);
             
-            // Close menu when a nav link is clicked
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', closeMenu);
             });
             
-            // Close menu on window resize if open
             window.addEventListener('resize', function() {
-                if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
-                    closeMenu();
-                }
+                if (window.innerWidth > 768 && navLinks.classList.contains('open')) closeMenu();
             });
-            
-            // Fix logo image if broken
-            const logoImg = document.querySelector('.logo-zoom');
-            if (logoImg && logoImg.complete && logoImg.naturalWidth === 0) {
-                logoImg.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%230b5d1e"/%3E%3Ctext x="50" y="70" font-size="70" text-anchor="middle" fill="%23c9a227" font-family="Arial"%3ER%3C/text%3E%3C/svg%3E';
-            }
         });
     </script>
 </body>
