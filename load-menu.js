@@ -9,14 +9,24 @@
         // Check if button already exists
         if (document.getElementById('mobileMenuTrigger')) return;
         
-        // Create hamburger button
+        // Create hamburger button as an overlay on the nav
         const trigger = document.createElement('button');
         trigger.id = 'mobileMenuTrigger';
         trigger.className = 'mobile-menu-trigger';
         trigger.setAttribute('aria-label', 'Menu');
         trigger.innerHTML = '<span></span><span></span><span></span>';
         
-        // Insert button into nav at the end
+        // Position it as an overlay on the nav bar
+        trigger.style.position = 'absolute';
+        trigger.style.top = '50%';
+        trigger.style.transform = 'translateY(-50%)';
+        trigger.style.right = '20px';
+        trigger.style.zIndex = '1001';
+        
+        // Make nav have relative position for absolute positioning
+        nav.style.position = 'relative';
+        
+        // Insert button into nav
         nav.appendChild(trigger);
         
         // Create overlay
@@ -71,7 +81,7 @@
                 align-items: center;
                 gap: 6px;
                 padding: 10px;
-                margin-left: auto;
+                margin: 0;
             }
             .mobile-menu-trigger span {
                 display: block;
