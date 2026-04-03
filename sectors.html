@@ -586,8 +586,13 @@
             border: 1px solid #c9a227;
         }
 
+        /* MOBILE RESPONSIVE FIXES - Matching Index and Contact Pages */
         @media (max-width: 1050px) {
-            .gold-section { width: 95%; padding: 35px 25px; margin: 12px auto 50px; }
+            .gold-section { 
+                width: calc(100% - 30px); 
+                padding: 35px 25px; 
+                margin: 12px auto 50px; 
+            }
             .section-intro h2 { font-size: 28px; }
             .grid-container { gap: 20px; }
             .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
@@ -595,10 +600,69 @@
         }
         
         @media (max-width: 650px) {
-            .gold-section { padding: 28px 20px; margin-top: 12px; }
-            .hero-header { padding: 35px 15px 20px; }
-            .sector-card { padding: 35px 25px; }
-            .sector-card h3 { font-size: 22px; }
+            .gold-section { 
+                padding: 20px 16px; 
+                margin-top: 12px;
+                width: calc(100% - 20px);
+                border-radius: 20px;
+            }
+            .hero-header { 
+                padding: 35px 15px 20px; 
+            }
+            /* Hero title scaling - matches index and contact pages */
+            .hero-header h1 {
+                font-size: 28px !important;
+            }
+            .section-intro h2 { 
+                font-size: 24px; 
+            }
+            .section-intro p {
+                font-size: 14px;
+            }
+            .sector-card { 
+                padding: 35px 25px; 
+            }
+            .sector-card h3 { 
+                font-size: 22px; 
+            }
+            .sector-card p {
+                font-size: 13px;
+            }
+            .quote-box p {
+                font-size: 14px !important;
+            }
+            .whatsapp-float { 
+                width: 50px; 
+                height: 50px; 
+                bottom: 20px; 
+                right: 20px; 
+            }
+            .whatsapp-float img { 
+                width: 28px; 
+                height: 28px; 
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gold-section {
+                padding: 16px 12px;
+            }
+            .hero-header h1 {
+                font-size: 24px !important;
+            }
+            .section-intro h2 {
+                font-size: 20px;
+            }
+            .section-intro p {
+                font-size: 12px;
+            }
+            .sector-card h3 {
+                font-size: 20px;
+            }
+            .pill {
+                font-size: 9px;
+                padding: 4px 10px;
+            }
         }
     </style>
 </head>
