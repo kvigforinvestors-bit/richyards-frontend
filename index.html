@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b5d1e'/><text x='50' y='70' font-size='70' text-anchor='middle' fill='%23c9a227' font-family='Arial'>R</text></svg>">
     
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -81,7 +81,7 @@
         .desktop-nav .nav-link:hover { background: rgba(201, 162, 39, 0.2); color: #f5e6a3; border-color: #c9a227; }
         .desktop-nav .nav-link.active { background: #c9a227; color: #0a0a0a; }
 
-        /* Mobile Menu Button - Three White Lines on Green Bar */
+        /* Mobile Menu Button - Three White Lines */
         .mobile-menu-btn {
             background: transparent;
             border: none;
@@ -127,45 +127,52 @@
             display: block;
         }
 
-        /* Mobile Menu Panel - Slides from Right */
+        /* Mobile Menu Panel - Slides from Right - UPDATED to match other pages */
         .mobile-menu-panel {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 80%;
-            max-width: 320px;
+            width: 85%;
+            max-width: 350px;
             height: 100%;
             background: linear-gradient(135deg, #0b5d1e 0%, #094a18 100%);
             z-index: 1002;
             transition: right 0.3s ease;
-            padding: 20px 20px 30px;
+            padding: 80px 25px 30px;
             overflow-y: auto;
             box-shadow: -5px 0 30px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
         }
         .mobile-menu-panel.open {
             right: 0;
         }
 
-        /* Search Bar - at the top */
+        /* Menu Logo */
+        .mobile-menu-logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #c9a227;
+        }
+        .mobile-menu-logo h2 {
+            color: #c9a227;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+        }
+
+        /* Search Bar - UPDATED to match other pages */
         .mobile-menu-search {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(201,162,39,0.3);
+            margin-bottom: 30px;
         }
         .mobile-menu-search h4 {
             color: #c9a227;
             font-size: 12px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
         .mobile-search-box {
             display: flex;
             background: rgba(255,255,255,0.1);
             border-radius: 30px;
             overflow: hidden;
-            border: 1px solid rgba(201,162,39,0.3);
         }
         .mobile-search-box input {
             flex: 1;
@@ -174,10 +181,10 @@
             border: none;
             color: #fff;
             outline: none;
-            font-size: 14px;
+            font-size: 12px;
         }
         .mobile-search-box input::placeholder {
-            color: rgba(255,255,255,0.5);
+            font-size: 11px;
         }
         .mobile-search-box button {
             padding: 10px 15px;
@@ -185,18 +192,11 @@
             border: none;
             cursor: pointer;
         }
-        .mobile-search-box button i {
-            width: 18px;
-            height: 18px;
-            color: #0a0a0a;
-        }
         .mobile-search-results {
-            margin-top: 10px;
+            margin-top: 15px;
             background: rgba(0,0,0,0.3);
             border-radius: 12px;
             display: none;
-            max-height: 150px;
-            overflow-y: auto;
         }
         .mobile-search-results.active {
             display: block;
@@ -207,93 +207,87 @@
             text-decoration: none;
             display: block;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 12px;
         }
-        .mobile-search-result-item:active {
+        .mobile-search-result-item:hover {
             background: #c9a227;
             color: #0a0a0a;
         }
 
-        /* Menu Title */
-        .mobile-menu-title {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #c9a227;
-        }
-        .mobile-menu-title h2 {
-            color: #c9a227;
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-        }
-        .mobile-menu-title p {
-            color: #f5e6a3;
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
-
-        /* Navigation Links */
+        /* Navigation Links - UPDATED */
         .mobile-menu-nav {
             list-style: none;
-            margin-bottom: 20px;
-            flex: 1;
+            margin-bottom: 30px;
         }
         .mobile-menu-nav li {
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
         .mobile-menu-nav a {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             padding: 10px 15px;
             color: #fff;
             text-decoration: none;
-            font-size: 15px;
-            border-radius: 10px;
+            font-size: 13px;
+            border-radius: 12px;
             transition: 0.3s;
         }
-        .mobile-menu-nav a:active {
+        .mobile-menu-nav a:hover, .mobile-menu-nav a:active {
             background: #c9a227;
             color: #0a0a0a;
         }
         .mobile-menu-nav a i {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
-        /* Contact Info - at the bottom */
-        .mobile-menu-contact {
+        /* Contact Info - UPDATED to match other pages */
+        .mobile-menu-info {
             background: rgba(0,0,0,0.2);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: auto;
-            border-top: 1px solid rgba(201,162,39,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
         }
-        .mobile-menu-contact h4 {
+        .mobile-menu-info h4 {
             color: #c9a227;
-            font-size: 11px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        .mobile-contact-item {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .mobile-contact-item i {
-            width: 16px;
-            height: 16px;
-            color: #c9a227;
-        }
-        .mobile-contact-item .contact-text {
+            margin-bottom: 15px;
             font-size: 12px;
-            color: #fff;
-            word-break: break-all;
         }
-        .mobile-contact-item .contact-text a {
+        .mobile-info-item {
+            margin-bottom: 15px;
+        }
+        .mobile-info-label {
+            font-size: 9px;
+            color: #c9a227;
+            margin-bottom: 4px;
+        }
+        .mobile-info-value {
+            font-size: 11px;
+            color: #fff;
+        }
+        .mobile-info-value a {
             color: #f5e6a3;
             text-decoration: none;
+            font-size: 11px;
+        }
+        .mobile-swipe-indicator {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 850px) {
+            .desktop-nav { display: none !important; }
+            .mobile-menu-btn { display: flex !important; }
+        }
+        
+        @media (min-width: 851px) {
+            .mobile-menu-btn, .mobile-menu-overlay, .mobile-menu-panel {
+                display: none !important;
+            }
+            .desktop-nav { display: flex !important; }
         }
 
         .gold-section {
@@ -407,16 +401,8 @@
             .hero-grid { grid-template-columns: 1fr; gap: 30px; }
             .gold-section { width: 95%; padding: 35px 20px; }
             .main-heading { font-size: 32px; }
-            .desktop-nav { display: none !important; }
-            .mobile-menu-btn { display: flex !important; }
             .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
             .whatsapp-float img { width: 28px; height: 28px; }
-        }
-        
-        @media (min-width: 851px) {
-            .mobile-menu-btn, .mobile-menu-overlay, .mobile-menu-panel {
-                display: none !important;
-            }
         }
     </style>
 </head>
@@ -457,25 +443,11 @@
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     
-    <!-- Mobile Menu Panel -->
+    <!-- Mobile Menu Panel - UPDATED STRUCTURE -->
     <div class="mobile-menu-panel" id="mobileMenuPanel">
-        <!-- Search Bar - at the TOP -->
-        <div class="mobile-menu-search">
-            <h4>🔍 SEARCH PAGES</h4>
-            <div class="mobile-search-box">
-                <input type="text" id="searchInput" placeholder="Type to search...">
-                <button id="searchBtn"><i data-lucide="search"></i></button>
-            </div>
-            <div class="mobile-search-results" id="searchResults"></div>
-        </div>
-        
-        <!-- Menu Title -->
-        <div class="mobile-menu-title">
+        <div class="mobile-menu-logo">
             <h2>RICHYARDS</h2>
-            <p>INVESTORS</p>
         </div>
-        
-        <!-- Navigation Links -->
         <ul class="mobile-menu-nav">
             <li><a href="index.html"><i data-lucide="home"></i> Home</a></li>
             <li><a href="about.html"><i data-lucide="building-2"></i> About Us</a></li>
@@ -485,23 +457,21 @@
             <li><a href="expansion.html"><i data-lucide="map"></i> Expansion</a></li>
             <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
         </ul>
-        
-        <!-- Contact Info - at the BOTTOM -->
-        <div class="mobile-menu-contact">
-            <h4>📞 CONTACT INFO</h4>
-            <div class="mobile-contact-item">
-                <i data-lucide="mail"></i>
-                <span class="contact-text"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></span>
+        <div class="mobile-menu-search">
+            <h4>🔍 Search Pages</h4>
+            <div class="mobile-search-box">
+                <input type="text" id="mobileSearchInput" placeholder="Type to search...">
+                <button id="mobileSearchBtn"><i data-lucide="search"></i></button>
             </div>
-            <div class="mobile-contact-item">
-                <i data-lucide="phone"></i>
-                <span class="contact-text"><a href="tel:+254115777999">+254 115 777 999</a></span>
-            </div>
-            <div class="mobile-contact-item">
-                <i data-lucide="map-pin"></i>
-                <span class="contact-text">Flamingo Towers, Nairobi</span>
-            </div>
+            <div class="mobile-search-results" id="mobileSearchResults"></div>
         </div>
+        <div class="mobile-menu-info">
+            <h4>📞 Vital Information</h4>
+            <div class="mobile-info-item"><div class="mobile-info-label">📧 Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">📱 Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">📍 Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
+        </div>
+        <div class="mobile-swipe-indicator">← Swipe to close</div>
     </div>
 
     <div class="gold-section">
@@ -554,17 +524,20 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
             
             // Mobile Menu Elements
             const menuBtn = document.getElementById('mobileMenuBtn');
             const menuPanel = document.getElementById('mobileMenuPanel');
             const menuOverlay = document.getElementById('mobileMenuOverlay');
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            const searchResults = document.getElementById('searchResults');
+            const searchInput = document.getElementById('mobileSearchInput');
+            const searchBtn = document.getElementById('mobileSearchBtn');
+            const searchResults = document.getElementById('mobileSearchResults');
             
             let touchStartX = 0;
+            let touchStartPageX = 0;
             
             function openMenu() {
                 menuPanel.classList.add('open');
@@ -585,15 +558,13 @@
             if (menuBtn) menuBtn.addEventListener('click', openMenu);
             if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
             
-            // Swipe to OPEN (swipe from left edge) and swipe to CLOSE (swipe left on menu)
-            let touchStartPageX = 0;
+            // Swipe from left edge to open
             document.addEventListener('touchstart', function(e) {
                 touchStartPageX = e.changedTouches[0].pageX;
             });
             
             document.addEventListener('touchend', function(e) {
                 const touchEndPageX = e.changedTouches[0].pageX;
-                // Swipe from left edge (first 30px) to the right - OPEN MENU
                 if (touchStartPageX < 30 && touchEndPageX - touchStartPageX > 50 && !menuPanel.classList.contains('open')) {
                     openMenu();
                 }
@@ -663,11 +634,12 @@
             
             // Close on escape key
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && menuPanel.classList.contains('open')) {
+                if (e.key === 'Escape' && menuPanel && menuPanel.classList.contains('open')) {
                     closeMenu();
                 }
             });
             
+            // Logo fallback
             const logoImg = document.querySelector('.logo-zoom');
             if (logoImg && logoImg.complete && logoImg.naturalWidth === 0) {
                 logoImg.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%230b5d1e"/%3E%3Ctext x="50" y="70" font-size="70" text-anchor="middle" fill="%23c9a227" font-family="Arial"%3ER%3C/text%3E%3C/svg%3E';
