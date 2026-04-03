@@ -11,24 +11,18 @@
             box-sizing: border-box;
         }
         
-        /* Menu Button (Three White Lines) - RIGHT SIDE */
+        /* Menu Button - will be placed inside nav by JavaScript */
         .menu-trigger {
-            position: fixed;
-            top: 12px;
-            right: 20px;
-            left: auto;
-            width: 45px;
-            height: 45px;
             background: transparent;
             border: none;
             cursor: pointer;
-            z-index: 10000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 6px;
             padding: 10px;
+            margin-left: auto;
         }
         
         .menu-trigger span {
@@ -287,16 +281,19 @@
             color: rgba(255, 255, 255, 0.5);
         }
         
-        /* Hide menu button on desktop */
+        /* Hide menu button on desktop - it will be shown by JS only on mobile */
         @media (min-width: 851px) {
             .menu-trigger {
+                display: none !important;
+            }
+            .menu-overlay, .menu-panel {
                 display: none !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Menu Trigger Button (Three White Lines) - RIGHT SIDE -->
+    <!-- Menu Trigger Button - will be moved into nav by JavaScript -->
     <button class="menu-trigger" id="menuTrigger">
         <span></span>
         <span></span>
@@ -365,6 +362,20 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
+        // Move the menu button into the navigation bar
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuTrigger = document.getElementById('menuTrigger');
+            const nav = document.querySelector('nav');
+            
+            if (menuTrigger && nav) {
+                // Move the button into the nav element
+                nav.appendChild(menuTrigger);
+                menuTrigger.style.position = 'relative';
+                menuTrigger.style.top = 'auto';
+                menuTrigger.style.right = 'auto';
+            }
+        });
+        
         // Page data for search
         const pages = [
             { name: "Home", url: "index.html", keywords: "home main welcome" },
@@ -405,20 +416,22 @@
         }
         
         // Event Listeners
-        menuTrigger.addEventListener('click', openMenu);
-        menuOverlay.addEventListener('click', closeMenu);
+        if (menuTrigger) menuTrigger.addEventListener('click', openMenu);
+        if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
         
         // Swipe to close (swipe left to close since menu is on right)
-        menuPanel.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        menuPanel.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) {
-                closeMenu();
-            }
-        });
+        if (menuPanel) {
+            menuPanel.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            menuPanel.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    closeMenu();
+                }
+            });
+        }
         
         // Close menu when clicking a link
         document.querySelectorAll('.menu-nav a').forEach(link => {
@@ -468,15 +481,17 @@
             }
         }
         
-        searchInput.addEventListener('keyup', performSearch);
-        searchBtn.addEventListener('click', performSearch);
+        if (searchInput) searchInput.addEventListener('keyup', performSearch);
+        if (searchBtn) searchBtn.addEventListener('click', performSearch);
         
         // Initialize Lucide icons
-        lucide.createIcons();
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
         
         // Close menu on escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && menuPanel.classList.contains('open')) {
+            if (e.key === 'Escape' && menuPanel && menuPanel.classList.contains('open')) {
                 closeMenu();
             }
         });
