@@ -313,6 +313,8 @@
             function toggleMenu() {
                 const isOpen = navLinks.classList.toggle('open');
                 if (overlay) overlay.classList.toggle('active');
+                
+                // Prevent scrolling when menu is open
                 document.body.style.overflow = isOpen ? 'hidden' : '';
                 
                 // Update icon inside hamburger
@@ -348,19 +350,10 @@
                 overlay.addEventListener('click', closeMenu);
             }
             
-            // 6. Navigation Fix: Allow normal clicks on mobile
-            const allLinks = document.querySelectorAll('.nav-link');
-            allLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    // Close menu after a tiny delay so user sees interaction
-                    if (window.innerWidth <= 850) {
-                        setTimeout(closeMenu, 150);
-                    }
-                    // No event.preventDefault() here! We WANT the browser to navigate.
-                });
-            });
+            // Note: We removed the 'nav-link' click listener that was manually closing the menu.
+            // This allows the browser to simply navigate to the next file normally.
             
-            // Close menu on resize
+            // Close menu on resize (if user rotates phone/resizes browser)
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 850) closeMenu();
             });
