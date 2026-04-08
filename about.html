@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Ôªø<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b5d1e'/><text x='50' y='70' font-size='70' text-anchor='middle' fill='%23c9a227' font-family='Arial'>R</text></svg>">
     
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,7 +28,7 @@
         }
         .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
         .hero-content h1 { font-size: clamp(28px, 8vw, 42px); font-family: 'Playfair Display', serif; color: #c9a227; letter-spacing: 2px; text-transform: uppercase; }
-        .hero-content p { font-size: clamp(12px, 4vw, 16px); opacity: 0.9; font-weight: 300; color: #f5e6a3; letter-spacing: 1px; }
+        .hero-content p { font-size: clamp(12px, 4vw, 16px); opacity: 0.9; font-weight: 300; color: #ffffff; letter-spacing: 1px; }
 
         nav { 
             display: flex; 
@@ -55,19 +55,194 @@
         }
         .logo-zoom:hover { transform: scale(1.1); }
         
-        .nav-links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-        .nav-link { 
-            display: flex; align-items: center; gap: 6px; padding: 8px 14px; 
-            border-radius: 40px; color: #ffffff; text-decoration: none; font-size: clamp(11px, 3vw, 13px); 
-            transition: 0.3s; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .desktop-nav .nav-link { 
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 40px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: clamp(11px, 3vw, 13px);
+            transition: 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             border: 1px solid transparent;
         }
-        .nav-link:hover { background: rgba(201, 162, 39, 0.2); color: #f5e6a3; border-color: #c9a227; }
-        .nav-link.active { background: #c9a227; color: #0a0a0a; }
+        .desktop-nav .nav-link:hover { background: rgba(201, 162, 39, 0.2); color: #f5e6a3; border-color: #c9a227; }
+        .desktop-nav .nav-link.active { background: #c9a227; color: #0a0a0a; }
 
-        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 102; }
-        .hamburger i { width: 28px; height: 28px; color: #ffffff; transition: 0.3s; }
-        .hamburger:hover i { color: #c9a227; }
+        /* Mobile Menu Button - White Hamburger on Green Tab */
+        .mobile-menu-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 10px;
+            z-index: 1001;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            display: none;
+        }
+        .mobile-menu-overlay.active { display: block; }
+
+        /* Mobile Menu Panel - Slides from Right */
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100%;
+            background: linear-gradient(135deg, #0b5d1e 0%, #094a18 100%);
+            z-index: 1002;
+            transition: right 0.3s ease;
+            padding: 80px 25px 30px;
+            overflow-y: auto;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+        }
+        .mobile-menu-panel.open { right: 0; }
+
+        .mobile-menu-logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #c9a227;
+        }
+        .mobile-menu-logo h2 {
+            color: #c9a227;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+        }
+
+        .mobile-menu-search {
+            margin-bottom: 30px;
+        }
+        .mobile-menu-search h4 {
+            color: #c9a227;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .mobile-search-box {
+            display: flex;
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .mobile-search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+        .mobile-search-box button {
+            padding: 12px 15px;
+            background: #c9a227;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-search-results {
+            margin-top: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            display: none;
+        }
+        .mobile-search-results.active { display: block; }
+        .mobile-search-result-item {
+            padding: 10px 12px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            border-radius: 8px;
+        }
+        .mobile-search-result-item:hover { background: #c9a227; color: #0a0a0a; }
+
+        .mobile-menu-nav {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .mobile-menu-nav li { margin-bottom: 5px; }
+        .mobile-menu-nav a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 18px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+        .mobile-menu-nav a:hover, .mobile-menu-nav a:active {
+            background: #c9a227;
+            color: #0a0a0a;
+        }
+        .mobile-menu-nav a i { width: 22px; height: 22px; }
+
+        .mobile-menu-info {
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .mobile-menu-info h4 {
+            color: #c9a227;
+            margin-bottom: 15px;
+        }
+        .mobile-info-item { margin-bottom: 15px; }
+        .mobile-info-label {
+            font-size: 11px;
+            color: #c9a227;
+            margin-bottom: 4px;
+        }
+        .mobile-info-value { font-size: 13px; color: #fff; }
+        .mobile-info-value a { color: #f5e6a3; text-decoration: none; }
+        .mobile-swipe-indicator {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
 
         /* Gold Section - Full width on mobile */
         .gold-section {
@@ -170,33 +345,15 @@
         .whatsapp-float img { width: clamp(25px, 7vw, 35px); height: clamp(25px, 7vw, 35px); object-fit: contain; }
 
         @media (max-width: 850px) {
-            .hamburger { display: block; }
-            .nav-links {
-                position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px;
-                height: 100vh; background: #0b5d1e; flex-direction: column;
-                justify-content: flex-start; padding: 80px 20px; transition: 0.3s;
-                z-index: 101; border-right: 2px solid #c9a227; gap: 12px;
-            }
-            .nav-links.open { left: 0; }
-            .nav-link { width: 100%; justify-content: flex-start; padding: 12px 16px; font-size: 14px; }
-            .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100; display: none; }
-            .overlay.active { display: block; }
+            .desktop-nav { display: none !important; }
+            .mobile-menu-btn { display: flex !important; }
             .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
             .whatsapp-float img { width: 28px; height: 28px; }
         }
         
         @media (min-width: 851px) {
-            .hamburger { display: none; }
-            .nav-links {
-                display: flex !important;
-                position: static;
-                width: auto;
-                height: auto;
-                background: transparent;
-                flex-direction: row;
-                padding: 0;
-                box-shadow: none;
-                border-right: none;
+            .mobile-menu-btn, .mobile-menu-overlay, .mobile-menu-panel {
+                display: none !important;
             }
         }
     </style>
@@ -207,7 +364,7 @@
         <div class="hero-content">
             <h1>ABOUT US</h1>
             <div style="width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #c9a227, transparent); margin: 15px auto;"></div>
-            <p>THE BRIDGE BETWEEN GLOBAL CAPITAL AND AFRICAN POTENTIAL</p>
+            <p>The bridge between global capital and African potential</p>
         </div>
     </div>
 
@@ -216,9 +373,8 @@
             <a href="index.html"><img src="Images/LOGO.jpeg" alt="Richyards Logo" class="logo-zoom" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%230b5d1e%22/%3E%3Ctext x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22 fill=%22%23c9a227%22%3ER%3C/text%3E%3C/svg%3E';"></a>
         </div>
         
-        <button class="hamburger" id="hamburgerBtn"><i data-lucide="menu"></i></button>
-        
-        <div class="nav-links" id="navLinks">
+        <!-- Desktop Navigation -->
+        <div class="desktop-nav">
             <a href='index.html' class='nav-link'><i data-lucide='home'></i>Home</a>
             <a href='about.html' class='nav-link active'><i data-lucide='building-2'></i>About</a>
             <a href='sectors.html' class='nav-link'><i data-lucide='pie-chart'></i>Sectors</a>
@@ -227,8 +383,41 @@
             <a href='expansion.html' class='nav-link'><i data-lucide='map'></i>Expansion</a>
             <a href='contact.html' class='nav-link'><i data-lucide='mail'></i>Contact</a>
         </div>
+        
+        <!-- Mobile Menu Button (White Hamburger on Green Tab) -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
-    <div class="overlay" id="overlay"></div>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <div class="mobile-menu-logo"><h2>RICHYARDS</h2></div>
+        <ul class="mobile-menu-nav">
+            <li><a href="index.html"><i data-lucide="home"></i> Home</a></li>
+            <li><a href="about.html"><i data-lucide="building-2"></i> About Us</a></li>
+            <li><a href="sectors.html"><i data-lucide="pie-chart"></i> Sectors</a></li>
+            <li><a href="opportunities.html"><i data-lucide="trending-up"></i> Opportunities</a></li>
+            <li><a href="partnerships.html"><i data-lucide="handshake"></i> Partnerships</a></li>
+            <li><a href="expansion.html"><i data-lucide="map"></i> Expansion</a></li>
+            <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
+        </ul>
+        <div class="mobile-menu-search">
+            <h4>üîç Search Pages</h4>
+            <div class="mobile-search-box">
+                <input type="text" id="mobileSearchInput" placeholder="Type to search...">
+                <button id="mobileSearchBtn"><i data-lucide="search"></i></button>
+            </div>
+            <div class="mobile-search-results" id="mobileSearchResults"></div>
+        </div>
+        <div class="mobile-menu-info">
+            <h4>üìû Vital Information</h4>
+            <div class="mobile-info-item"><div class="mobile-info-label">üìß Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">üì± Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">üìç Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
+        </div>
+        <div class="mobile-swipe-indicator">‚Üê Swipe to close</div>
+    </div>
 
     <div class="gold-section">
         <div style="text-align: center; margin-bottom: 50px;">
@@ -243,11 +432,11 @@
                 <h3>Regulatory Compliance</h3>
                 <p>Multi-jurisdictional compliance framework protecting your capital with institutional-grade oversight.</p>
                 <ul class="why-list">
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>CMA Licensed</strong> ó Capital Markets Authority full regulatory oversight</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>ICPAK Certified</strong> ó All accounting standards compliant</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Big 4 Audits</strong> ó Annual independent audits by Deloitte, PWC, KPMG, or EY</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Segregated Escrow</strong> ó Investor funds held in independent escrow accounts</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>AML/KYC Protocols</strong> ó Full anti-money laundering compliance</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>CMA Licensed</strong> ‚Äî Capital Markets Authority full regulatory oversight</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>ICPAK Certified</strong> ‚Äî All accounting standards compliant</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Big 4 Audits</strong> ‚Äî Annual independent audits by Deloitte, PWC, KPMG, or EY</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Segregated Escrow</strong> ‚Äî Investor funds held in independent escrow accounts</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>AML/KYC Protocols</strong> ‚Äî Full anti-money laundering compliance</span></li>
                 </ul>
                 <button class="read-more-btn">Read More <i data-lucide="arrow-right"></i></button>
             </div>
@@ -257,11 +446,11 @@
                 <h3>World-Class Leadership</h3>
                 <p>Investment team with pedigree from top-tier global financial institutions.</p>
                 <ul class="why-list">
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>18+ Years Expertise</strong> ó Combined 200+ years of institutional experience</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Goldman Sachs Alumni</strong> ó Former managing directors from investment banking</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>World Bank Experience</strong> ó Senior advisors with development finance background</span></li>
-                    <li><i??-lucide="check-circle" size="16"></i> <span><strong>African Networks</strong> ó Deep relationships across 6 countries</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Sectoral Mastery</strong> ó Investment committee with C-suite experts</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>18+ Years Expertise</strong> ‚Äî Combined 200+ years of institutional experience</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Goldman Sachs Alumni</strong> ‚Äî Former managing directors from investment banking</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>World Bank Experience</strong> ‚Äî Senior advisors with development finance background</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>African Networks</strong> ‚Äî Deep relationships across 6 countries</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Sectoral Mastery</strong> ‚Äî Investment committee with C-suite experts</span></li>
                 </ul>
                 <button class="read-more-btn">Read More <i data-lucide="arrow-right"></i></button>
             </div>
@@ -271,11 +460,11 @@
                 <h3>Radical Transparency</h3>
                 <p>Real-time access to every investment decision and capital deployment.</p>
                 <ul class="why-list">
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Live Portal Access</strong> ó Monthly dashboard with real-time portfolio performance</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Quarterly Reports</strong> ó Comprehensive fund performance analysis with deal-by-deal breakdown</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Independent Audits</strong> ó Annual verified statements available to all investors</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Investment Documentation</strong> ó Full prospectus, term sheets, and legal agreements upfront</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Investor Calls</strong> ó Quarterly webcasts with management; direct Q&A</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Live Portal Access</strong> ‚Äî Monthly dashboard with real-time portfolio performance</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Quarterly Reports</strong> ‚Äî Comprehensive fund performance analysis with deal-by-deal breakdown</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Independent Audits</strong> ‚Äî Annual verified statements available to all investors</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Investment Documentation</strong> ‚Äî Full prospectus, term sheets, and legal agreements upfront</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Investor Calls</strong> ‚Äî Quarterly webcasts with management; direct Q&A</span></li>
                 </ul>
                 <button class="read-more-btn">Read More <i data-lucide="arrow-right"></i></button>
             </div>
@@ -283,13 +472,13 @@
             <div class="why-card">
                 <i data-lucide="trending-up" class="why-icon"></i>
                 <h3>Outperforming Returns</h3>
-                <p>Consistent delivery across market cycles ó significantly outpace global emerging market benchmarks.</p>
+                <p>Consistent delivery across market cycles ‚Äî significantly outpace global emerging market benchmarks.</p>
                 <ul class="why-list">
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>24.5% Average Annual Returns</strong> ó 5-year track record exceeds global emerging market funds</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>31% Peak Performance</strong> ó 2022 bull market demonstrated upside capture capability</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>18% Downside Protection</strong> ó Positive returns even in market downturns</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>47 Successful Exits</strong> ó Disciplined portfolio management with proven value creation</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>99.2% Capital Recovery</strong> ó Best-in-class loss mitigation; minimal impairments</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>24.5% Average Annual Returns</strong> ‚Äî 5-year track record exceeds global emerging market funds</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>31% Peak Performance</strong> ‚Äî 2022 bull market demonstrated upside capture capability</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>18% Downside Protection</strong> ‚Äî Positive returns even in market downturns</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>47 Successful Exits</strong> ‚Äî Disciplined portfolio management with proven value creation</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>99.2% Capital Recovery</strong> ‚Äî Best-in-class loss mitigation; minimal impairments</span></li>
                 </ul>
                 <button class="read-more-btn">Read More <i data-lucide="arrow-right"></i></button>
             </div>
@@ -299,11 +488,11 @@
                 <h3>Regional Dominance</h3>
                 <p>Diversified deal flow across Africa's fastest-growing markets with on-ground execution.</p>
                 <ul class="why-list">
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>6-Country Operations</strong> ó Kenya, Uganda, Tanzania, Rwanda, Ethiopia, DRC with established presence</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>500M+ Market Access</strong> ó Direct exposure to East Africa's rapidly growing consumer base</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>On-Ground Teams</strong> ó Local management, country heads, and sectoral specialists in each market</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Deal Flow Network</strong> ó Relationships with entrepreneurs, corporates, and government agencies</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Pan-African Companies</strong> ó Portfolio firms expanding across multiple countries</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>6-Country Operations</strong> ‚Äî Kenya, Uganda, Tanzania, Rwanda, Ethiopia, DRC with established presence</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>500M+ Market Access</strong> ‚Äî Direct exposure to East Africa's rapidly growing consumer base</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>On-Ground Teams</strong> ‚Äî Local management, country heads, and sectoral specialists in each market</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Deal Flow Network</strong> ‚Äî Relationships with entrepreneurs, corporates, and government agencies</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Pan-African Companies</strong> ‚Äî Portfolio firms expanding across multiple countries</span></li>
                 </ul>
                 <button class="read-more-btn">Read More <i data-lucide="arrow-right"></i></button>
             </div>
@@ -313,11 +502,11 @@
                 <h3>Capital Preservation</h3>
                 <p>Multi-layered risk management ensuring capital protection while generating returns.</p>
                 <ul class="why-list">
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>99.2% Recovery Rate</strong> ó Industry-leading loss mitigation through disciplined risk management</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Enhanced Diligence</strong> ó 150-point investment checklist; sector and legal experts review every deal</span></li>
-                    <li><i??-lucide="check-circle" size="16"></i> <span><strong>Collateralization</strong> ó Primary collateral on real estate; security interests and equity pledges</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Insurance Coverage</strong> ó Key person insurance, professional liability, portfolio company coverage</span></li>
-                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Conservative Leverage</strong> ó Disciplined capital structure; reserve funds for downside scenarios</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>99.2% Recovery Rate</strong> ‚Äî Industry-leading loss mitigation through disciplined risk management</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Enhanced Diligence</strong> ‚Äî 150-point investment checklist; sector and legal experts review every deal</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Collateralization</strong> ‚Äî Primary collateral on real estate; security interests and equity pledges</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Insurance Coverage</strong> ‚Äî Key person insurance, professional liability, portfolio company coverage</span></li>
+                    <li><i data-lucide="check-circle" size="16"></i> <span><strong>Conservative Leverage</strong> ‚Äî Disciplined capital structure; reserve funds for downside scenarios</span></li>
                 </ul>
                 <button class="read-more-btn">Read More <i data-lucide="arrow-right"></i></button>
             </div>
@@ -370,7 +559,7 @@
                 <img src="Images/facebook_icon.jpg" alt="Facebook" class="social-icon-img"> Facebook
             </a>
         </div>
-        <p style="color: #888; font-size: clamp(10px, 3vw, 13px); letter-spacing: 0.5px;">© 2026 Richyards Investors. All Rights Reserved. | Empowering Generations Through Strategic Investment</p>
+        <p style="color: #888; font-size: clamp(10px, 3vw, 13px); letter-spacing: 0.5px;">¬© 2026 Richyards Investors. All Rights Reserved. | Empowering Generations Through Strategic Investment</p>
     </footer>
 
     <a href="https://wa.me/254115777999" target="_blank" class="whatsapp-float">
@@ -381,44 +570,95 @@
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
             
-            const hamburger = document.getElementById('hamburgerBtn');
-            const navLinks = document.getElementById('navLinks');
-            const overlay = document.getElementById('overlay');
+            // Mobile menu elements
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuPanel = document.getElementById('mobileMenuPanel');
+            const menuOverlay = document.getElementById('mobileMenuOverlay');
+            const searchInput = document.getElementById('mobileSearchInput');
+            const searchBtn = document.getElementById('mobileSearchBtn');
+            const searchResults = document.getElementById('mobileSearchResults');
             
-            function toggleMenu() {
-                const isOpen = navLinks.classList.toggle('open');
-                overlay.classList.toggle('active');
-                document.body.style.overflow = isOpen ? 'hidden' : '';
-                const icon = hamburger.querySelector('i');
-                if (icon) icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
-                lucide.createIcons();
+            let touchStartX = 0;
+            
+            function openMenu() {
+                menuPanel.classList.add('open');
+                menuOverlay.classList.add('active');
+                menuBtn.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
             
             function closeMenu() {
-                navLinks.classList.remove('open');
-                overlay.classList.remove('active');
+                menuPanel.classList.remove('open');
+                menuOverlay.classList.remove('active');
+                menuBtn.classList.remove('active');
                 document.body.style.overflow = '';
-                const icon = hamburger.querySelector('i');
-                if (icon) icon.setAttribute('data-lucide', 'menu');
-                lucide.createIcons();
+                if (searchResults) searchResults.classList.remove('active');
+                if (searchInput) searchInput.value = '';
             }
             
-            if (hamburger) hamburger.addEventListener('click', toggleMenu);
-            if (overlay) overlay.addEventListener('click', closeMenu);
+            if (menuBtn) menuBtn.addEventListener('click', openMenu);
+            if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
             
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Swipe to close
+            if (menuPanel) {
+                menuPanel.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                menuPanel.addEventListener('touchend', function(e) {
+                    if (touchStartX - e.changedTouches[0].screenX > 50) closeMenu();
+                });
+            }
+            
+            // Close on link click
+            document.querySelectorAll('.mobile-menu-nav a').forEach(link => {
                 link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href && href !== '#') {
-                        e.preventDefault();
-                        closeMenu();
-                        setTimeout(() => { window.location.href = href; }, 200);
-                    }
+                    e.preventDefault();
+                    const url = this.getAttribute('href');
+                    closeMenu();
+                    setTimeout(() => { window.location.href = url; }, 200);
                 });
             });
             
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 850 && navLinks.classList.contains('open')) closeMenu();
+            // Search functionality
+            const pages = [
+                { name: "Home", url: "index.html" },
+                { name: "About Us", url: "about.html" },
+                { name: "Sectors", url: "sectors.html" },
+                { name: "Opportunities", url: "opportunities.html" },
+                { name: "Partnerships", url: "partnerships.html" },
+                { name: "Expansion", url: "expansion.html" },
+                { name: "Contact", url: "contact.html" }
+            ];
+            
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                if (!query) {
+                    searchResults.classList.remove('active');
+                    return;
+                }
+                const results = pages.filter(p => p.name.toLowerCase().includes(query));
+                if (results.length) {
+                    searchResults.innerHTML = results.map(r => `<a href="${r.url}" class="mobile-search-result-item">üîç ${r.name}</a>`).join('');
+                    searchResults.classList.add('active');
+                    document.querySelectorAll('.mobile-search-result-item').forEach(item => {
+                        item.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const url = this.getAttribute('href');
+                            closeMenu();
+                            setTimeout(() => { window.location.href = url; }, 200);
+                        });
+                    });
+                } else {
+                    searchResults.innerHTML = '<div class="mobile-search-result-item">No results</div>';
+                    searchResults.classList.add('active');
+                }
+            }
+            
+            if (searchInput) searchInput.addEventListener('keyup', performSearch);
+            if (searchBtn) searchBtn.addEventListener('click', performSearch);
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && menuPanel.classList.contains('open')) closeMenu();
             });
             
             document.querySelectorAll('.why-card').forEach(card => {
