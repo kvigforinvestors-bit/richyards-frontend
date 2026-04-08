@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -467,7 +467,7 @@
             margin-bottom: 12px;
         }
         .requirement-item::before {
-            content: '✓';
+            content: '?';
             position: absolute;
             left: 0;
             color: #c9a227;
@@ -579,7 +579,7 @@
             <a href='about.html' class='nav-link'><i data-lucide='building-2'></i>About</a>
             <a href='sectors.html' class='nav-link active'><i data-lucide='pie-chart'></i>Sectors</a>
             <a href='opportunities.html' class='nav-link'><i data-lucide='trending-up'></i>Opportunities</a>
-            <a href='partnerships.html' class='nav-link'><i数据-lucide='handshake'></i>Partnerships</a>
+            <a href='partnerships.html' class='nav-link'><i??-lucide='handshake'></i>Partnerships</a>
             <a href='expansion.html' class='nav-link'><i data-lucide='map'></i>Expansion</a>
             <a href='contact.html' class='nav-link'><i data-lucide='mail'></i>Contact</a>
         </div>
@@ -603,7 +603,7 @@
             <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
         </ul>
         <div class="mobile-menu-search">
-            <h4>🔍 Search Pages</h4>
+            <h4>?? Search Pages</h4>
             <div class="mobile-search-box">
                 <input type="text" id="mobileSearchInput" placeholder="Type to search...">
                 <button id="mobileSearchBtn"><i data-lucide="search"></i></button>
@@ -611,12 +611,12 @@
             <div class="mobile-search-results" id="mobileSearchResults"></div>
         </div>
         <div class="mobile-menu-info">
-            <h4>📞 Vital Information</h4>
-            <div class="mobile-info-item"><div class="mobile-info-label">📧 Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
-            <div class="mobile-info-item"><div class="mobile-info-label">📱 Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
-            <div class="mobile-info-item"><div class="mobile-info-label">📍 Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
+            <h4>?? Vital Information</h4>
+            <div class="mobile-info-item"><div class="mobile-info-label">?? Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">?? Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">?? Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
         </div>
-        <div class="mobile-swipe-indicator">← Swipe to close</div>
+        <div class="mobile-swipe-indicator">? Swipe to close</div>
     </div>
 
     <div class="gold-section">
@@ -753,12 +753,15 @@
     </div>
 
     <footer style="text-align: center; padding: 40px 20px 30px; background: #060606; border-top: 1px solid rgba(201,162,39,0.15); margin-top: 20px;">
-        <div style="margin-bottom: 25px;">
+        <div style="margin-bottom: 25px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
             <a href="https://www.facebook.com/share/1J2z9Fh3tZ/" target="_blank" class="social-link">
                 <img src="Images/facebook_icon.jpg" alt="Facebook" class="social-icon-img"> Facebook
             </a>
+            <a href="https://www.linkedin.com/posts/richard-katiwa-442310123_investinkenya-richyardsinvestors-africarising-activity-7434137650711674880-F30q" target="_blank" class="social-link">
+                <img src="Images/Linkedin.png" alt="LinkedIn" class="social-icon-img"> LinkedIn
+            </a>
         </div>
-        <p style="color: #888; font-size: clamp(10px, 3vw, 13px); letter-spacing: 0.5px;">© 2026 Richyards Investors. All Rights Reserved. | Empowering Generations Through Strategic Investment</p>
+        <p style="color: #888; font-size: clamp(10px, 3vw, 13px); letter-spacing: 0.5px;">� 2026 Richyards Investors. All Rights Reserved. | Empowering Generations Through Strategic Investment</p>
     </footer>
 
     <a href="https://wa.me/254115777999" target="_blank" class="whatsapp-float">
@@ -868,7 +871,7 @@
                 highlights: [
                     'Kenya targets 100% renewable energy by 2030 (currently 80%)',
                     'Energy demand growing 5-7% annually outpacing supply',
-                    'Solar irradiance of 4.5-5.5 kWh/m²/day (among world\'s best)'
+                    'Solar irradiance of 4.5-5.5 kWh/m�/day (among world\'s best)'
                 ],
                 market: 'Kenya\'s renewable energy sector is Africa\'s most mature market. Government incentives and long-term PPAs provide stable cash flows.',
                 returns: [
@@ -983,7 +986,7 @@
             const requirementsHtml = data.requirements.map(req => `<div class="requirement-item">${req}</div>`).join('');
             document.getElementById('modal-requirements').innerHTML = requirementsHtml;
 
-            const projectsHtml = data.projects.map(p => `<div style="padding: 6px 0;">• ${p}</div>`).join('');
+            const projectsHtml = data.projects.map(p => `<div style="padding: 6px 0;">� ${p}</div>`).join('');
             document.getElementById('modal-projects').innerHTML = projectsHtml;
 
             const risksHtml = data.risks.map(r => 
@@ -1090,7 +1093,7 @@
             }
             const results = pages.filter(p => p.name.toLowerCase().includes(query));
             if (results.length) {
-                searchResults.innerHTML = results.map(r => `<a href="${r.url}" class="mobile-search-result-item">🔍 ${r.name}</a>`).join('');
+                searchResults.innerHTML = results.map(r => `<a href="${r.url}" class="mobile-search-result-item">?? ${r.name}</a>`).join('');
                 searchResults.classList.add('active');
                 document.querySelectorAll('.mobile-search-result-item').forEach(item => {
                     item.addEventListener('click', function(e) {
