@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -386,7 +386,7 @@
         
         <!-- Desktop Navigation -->
         <div class="desktop-nav">
-            <a href='index.html' class='nav-link'><i数据-lucide='home'></i>Home</a>
+            <a href='index.html' class='nav-link'><i??-lucide='home'></i>Home</a>
             <a href='about.html' class='nav-link'><i data-lucide='building-2'></i>About</a>
             <a href='sectors.html' class='nav-link'><i data-lucide='pie-chart'></i>Sectors</a>
             <a href='opportunities.html' class='nav-link'><i data-lucide='trending-up'></i>Opportunities</a>
@@ -414,7 +414,7 @@
             <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
         </ul>
         <div class="mobile-menu-search">
-            <h4>🔍 Search Pages</h4>
+            <h4>?? Search Pages</h4>
             <div class="mobile-search-box">
                 <input type="text" id="mobileSearchInput" placeholder="Type to search...">
                 <button id="mobileSearchBtn"><i data-lucide="search"></i></button>
@@ -422,12 +422,12 @@
             <div class="mobile-search-results" id="mobileSearchResults"></div>
         </div>
         <div class="mobile-menu-info">
-            <h4>📞 Vital Information</h4>
-            <div class="mobile-info-item"><div class="mobile-info-label">📧 Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
-            <div class="mobile-info-item"><div class="mobile-info-label">📱 Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
-            <div class="mobile-info-item"><div class="mobile-info-label">📍 Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
+            <h4>?? Vital Information</h4>
+            <div class="mobile-info-item"><div class="mobile-info-label">?? Email</div><div class="mobile-info-value"><a href="mailto:richyardsinvestors@gmail.com">richyardsinvestors@gmail.com</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">?? Phone</div><div class="mobile-info-value"><a href="https://wa.me/254115777999">+254 115 777 999</a></div></div>
+            <div class="mobile-info-item"><div class="mobile-info-label">?? Address</div><div class="mobile-info-value">Flamingo Towers, Nairobi</div></div>
         </div>
-        <div class="mobile-swipe-indicator">← Swipe to close</div>
+        <div class="mobile-swipe-indicator">? Swipe to close</div>
     </div>
 
     <div class="container">
@@ -502,12 +502,15 @@
     </div>
 
     <footer style="text-align: center; padding: 40px 20px 30px; background: #060606; border-top: 1px solid rgba(201,162,39,0.15); margin-top: 20px;">
-        <div style="margin-bottom: 25px;">
+        <div style="margin-bottom: 25px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
             <a href="https://www.facebook.com/share/1J2z9Fh3tZ/" target="_blank" class="social-link">
                 <img src="Images/facebook_icon.jpg" alt="Facebook" class="social-icon-img"> Facebook
             </a>
+            <a href="https://www.linkedin.com/posts/richard-katiwa-442310123_investinkenya-richyardsinvestors-africarising-activity-7434137650711674880-F30q" target="_blank" class="social-link">
+                <img src="Images/Linkedin.png" alt="LinkedIn" class="social-icon-img"> LinkedIn
+            </a>
         </div>
-        <p style="color: #888; font-size: clamp(10px, 3vw, 13px); letter-spacing: 0.5px;">© 2026 Richyards Investors. All Rights Reserved. | Empowering Generations Through Strategic Investment</p>
+        <p style="color: #888; font-size: clamp(10px, 3vw, 13px); letter-spacing: 0.5px;">� 2026 Richyards Investors. All Rights Reserved. | Empowering Generations Through Strategic Investment</p>
     </footer>
 
     <a href="https://wa.me/254115777999" target="_blank" class="whatsapp-float">
@@ -583,7 +586,7 @@
                 }
                 const results = pages.filter(p => p.name.toLowerCase().includes(query));
                 if (results.length) {
-                    searchResults.innerHTML = results.map(r => `<a href="${r.url}" class="mobile-search-result-item">🔍 ${r.name}</a>`).join('');
+                    searchResults.innerHTML = results.map(r => `<a href="${r.url}" class="mobile-search-result-item">?? ${r.name}</a>`).join('');
                     searchResults.classList.add('active');
                     document.querySelectorAll('.mobile-search-result-item').forEach(item => {
                         item.addEventListener('click', function(e) {
@@ -622,7 +625,7 @@
                     };
                     
                     formStatus.className = 'form-status loading';
-                    formStatus.innerHTML = '⏳ Sending message...';
+                    formStatus.innerHTML = '? Sending message...';
                     
                     try {
                         const response = await fetch('https://richyards-api.onrender.com/api/contact', {
@@ -635,15 +638,15 @@
                         
                         if (data.success) {
                             formStatus.className = 'form-status success';
-                            formStatus.innerHTML = '✓ Message sent successfully! Our team will contact you soon.';
+                            formStatus.innerHTML = '? Message sent successfully! Our team will contact you soon.';
                             contactForm.reset();
                         } else {
                             formStatus.className = 'form-status error';
-                            formStatus.innerHTML = '✗ Error: ' + (data.error || 'Please try again later.');
+                            formStatus.innerHTML = '? Error: ' + (data.error || 'Please try again later.');
                         }
                     } catch (error) {
                         formStatus.className = 'form-status error';
-                        formStatus.innerHTML = '✗ Connection error. Please check your internet and try again.';
+                        formStatus.innerHTML = '? Connection error. Please check your internet and try again.';
                         console.error('Form submission error:', error);
                     }
                 });
